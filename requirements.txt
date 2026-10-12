@@ -7,7 +7,4 @@ seaborn==0.13.2
 joblib==1.5.3
 
 pytest==9.1.1
-
-# Installed (1.65.0 resolved) but not yet used; pin once the app is
-# built and tested in Stage 4.
-streamlit>=1.40,<2
+streamlit==1.65.0
