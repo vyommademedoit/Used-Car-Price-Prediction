@@ -1,0 +1,29 @@
+{
+  "rows_raw": 301,
+  "rows_removed_invalid": 0,
+  "two_wheelers_found": 101,
+  "rows_removed_two_wheelers": 101,
+  "rows_removed_duplicates": 2,
+  "rows_clean": 198,
+  "rows_selling_above_present_price": 0,
+  "category_counts": {
+    "Fuel_Type": {
+      "Petrol": 138,
+      "Diesel": 58,
+      "CNG": 2
+    },
+    "Seller_Type": {
+      "Dealer": 193,
+      "Individual": 5
+    },
+    "Transmission": {
+      "Manual": 168,
+      "Automatic": 30
+    },
+    "Owner": {
+      "0": 193,
+      "1": 4,
+      "3": 1
+    }
+  }
+}
