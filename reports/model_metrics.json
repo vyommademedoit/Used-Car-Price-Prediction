@@ -1,0 +1,122 @@
+{
+  "model": "sklearn.linear_model.LinearRegression",
+  "variant": "log_log",
+  "features": [
+    "Year",
+    "Present_Price",
+    "Kms_Driven",
+    "Fuel_Type",
+    "Transmission"
+  ],
+  "split": {
+    "train": 158,
+    "test": 40,
+    "test_size": 0.2,
+    "random_seed": 42
+  },
+  "cv_scheme": "RepeatedKFold(5 splits x 10 repeats) on training set",
+  "cv_candidates": {
+    "raw": {
+      "MAE_mean": 1.242,
+      "MAE_sd": 0.211,
+      "RMSE_mean": 1.815,
+      "RMSE_sd": 0.422,
+      "R2_mean": 0.838,
+      "R2_sd": 0.07
+    },
+    "log_target": {
+      "MAE_mean": 1.157,
+      "MAE_sd": 0.289,
+      "RMSE_mean": 2.107,
+      "RMSE_sd": 0.85,
+      "R2_mean": 0.779,
+      "R2_sd": 0.141
+    },
+    "log_log": {
+      "MAE_mean": 0.708,
+      "MAE_sd": 0.111,
+      "RMSE_mean": 0.962,
+      "RMSE_sd": 0.162,
+      "R2_mean": 0.953,
+      "R2_sd": 0.022
+    }
+  },
+  "train": {
+    "MAE": 0.673,
+    "RMSE": 0.912,
+    "R2": 0.964,
+    "n": 158
+  },
+  "test": {
+    "all": {
+      "MAE": 0.935,
+      "RMSE": 1.696,
+      "R2": 0.915,
+      "n": 40
+    },
+    "within_training_range": {
+      "MAE": 0.725,
+      "RMSE": 0.902,
+      "R2": 0.938,
+      "n": 39
+    },
+    "excluded_as_out_of_range": [
+      {
+        "car": "land cruiser",
+        "actual": 35.0,
+        "predicted": 25.88
+      }
+    ]
+  },
+  "secondary_experiment_without_present_price": {
+    "variant": "log_target",
+    "features": [
+      "Year",
+      "Kms_Driven",
+      "Fuel_Type",
+      "Transmission"
+    ],
+    "cv_train": {
+      "MAE_mean": 1.999,
+      "MAE_sd": 0.324,
+      "RMSE_mean": 2.855,
+      "RMSE_sd": 0.642,
+      "R2_mean": 0.62,
+      "R2_sd": 0.083
+    },
+    "train": {
+      "MAE": 1.926,
+      "RMSE": 2.835,
+      "R2": 0.653,
+      "n": 158
+    },
+    "test": {
+      "all": {
+        "MAE": 2.603,
+        "RMSE": 5.476,
+        "R2": 0.111,
+        "n": 40
+      },
+      "within_training_range": {
+        "MAE": 1.894,
+        "RMSE": 2.705,
+        "R2": 0.438,
+        "n": 39
+      },
+      "excluded_as_out_of_range": [
+        {
+          "car": "land cruiser",
+          "actual": 35.0,
+          "predicted": 4.77
+        }
+      ]
+    }
+  },
+  "units": "MAE and RMSE in ₹ lakhs",
+  "figures": [
+    "09_cv_comparison.png",
+    "10_actual_vs_predicted.png",
+    "11_residual_distribution.png",
+    "12_residuals_vs_predicted.png"
+  ]
+}

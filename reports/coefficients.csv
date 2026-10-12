@@ -1,0 +1,8 @@
+term,coefficient,effect
+(intercept),0.590104153834643,Baseline value; not meaningful alone (no car has all inputs = 0)
+Car_Age,-0.10158233473147707,-9.7% selling price per extra year of age
+Kms_Driven,-2.7931961661951264e-06,"-2.8% selling price per 10,000 km"
+log_Present_Price,0.8182289544510524,+1% present price → +0.82% selling price
+Fuel_Type_CNG,-0.13234686002675697,-12.4% selling price for CNG vs Petrol (other inputs equal)
+Fuel_Type_Diesel,0.1917687200237722,+21.1% selling price for Diesel vs Petrol (other inputs equal)
+Transmission_Automatic,0.0540337709618,+5.6% selling price for Automatic vs Manual (other inputs equal)

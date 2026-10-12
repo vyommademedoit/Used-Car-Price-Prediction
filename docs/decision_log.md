@@ -66,21 +66,45 @@ rule is fixed now, before any model exists, so it cannot be chosen after
 seeing which version looks better. The full-set number stays the
 headline, so the result is not flattered.
 
-## Open — Decide in Stage 3 on training data (cross-validation) only
-1. **Target scale: raw vs log `Selling_Price`.** EDA evidence favours log.
-   The price is skewed (2.38 vs −0.19 after log), and depreciation looks
-   proportional (the share of the new price retained falls from 0.94 to
-   about 0.22 with age). Keep plain `LinearRegression` either way. On the
-   log scale, convert predictions back to lakhs before computing MAE,
-   RMSE and R², so the two options are compared in the same units.
-2. **Fuel reference level = Petrol**, not the alphabetical default (CNG).
-   With CNG as the reference, the Diesel and Petrol dummies have VIF ≈ 17
-   because only 2 cars are CNG.
-3. **Near-constant features.** In training, `Seller_Type = Individual`
-   has 5 cars, `Owner > 0` has 5 (`Owner = 3` is a single camry, the most
-   influential point), and CNG has 2. The test set contains *none* of
-   them, so their coefficients cannot be checked on held-out data. Decide
-   whether to keep them on domain grounds, not on test scores.
-4. **`Year` vs `Car_Age`.** Use `Car_Age` only. They carry the same
-   information, so including both would make the design matrix exactly
-   collinear.
+## D8 — Model features (Stage 3, fixed before any test-set evaluation)
+**Decision:** Inputs are `Year` (converted to `Car_Age` inside the
+pipeline), `Present_Price`, `Kms_Driven`, `Fuel_Type` and `Transmission`.
+`Seller_Type` and `Owner` are **excluded**.
+**Why:** In training, only 5 cars are sold by individuals and only 5
+have a previous owner. `Owner = 3` is a single camry, the most
+influential training point. Their coefficients would mostly describe those
+few cars, and the test set has none of them, so the coefficients could
+never be checked. Showing them as inputs in the app would suggest a
+reliability the model does not have. `Fuel_Type` stays in because
+Diesel (45 cars) is well represented. The CNG coefficient (2 cars) is
+reported but flagged as unreliable. `Year` and `Car_Age` are never used
+together, because they carry the same information.
+**Not used to decide:** any test-set number.
+
+## D9 — Reference levels Petrol and Manual (Stage 3)
+**Decision:** One-hot encode with Petrol and Manual as the dropped
+reference levels, so each category coefficient means "compared with a
+petrol manual car". Unseen levels at prediction time fall back to the
+reference level with a warning; the app will block them before that.
+**Why:** These are the most common levels. With CNG (2 cars) as the
+reference, the fuel dummies had VIF ≈ 17 (see EDA).
+
+## D10 — Target scale chosen by training-set cross-validation (Stage 3)
+**Decision rule, fixed before running:** compare three pre-declared
+`LinearRegression` variants with repeated 5-fold CV (10 repeats, seed 42)
+on the 158 training cars, and pick the lowest mean CV RMSE in ₹ lakhs:
+- `raw`: price ~ features
+- `log_target`: log(price) ~ features, predictions converted back with exp
+- `log_log`: log(price) ~ log(Present_Price) + other features
+
+**Why:** EDA showed a skewed target and percentage-style depreciation, but
+the choice should come from data the model is allowed to see. All three
+variants are still Multiple Linear Regression; only the scale of the
+inputs and outputs changes. The no-`Present_Price` experiment uses the
+chosen target scale.
+**Known caveat:** exp(predicted log price) estimates the *median* price
+for those inputs, which is slightly below the mean. This is acceptable for
+a "typical price" estimate.
+
+## Resolved items (formerly "Open")
+Open items 1–4 from Stage 2 are resolved by D8, D9 and D10.

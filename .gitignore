@@ -10,6 +10,9 @@ data/raw/*
 data/processed/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+# Row-level test predictions copy dataset rows (licence unconfirmed);
+# regenerate with `python -m src.train`.
+reports/test_predictions.csv
 
 # Generated model artefacts
 models/*
