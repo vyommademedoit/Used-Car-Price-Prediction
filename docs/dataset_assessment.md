@@ -6,7 +6,11 @@
 - **File used:** `car data.csv`, saved locally as `data/raw/car_data.csv`
 - **Origin:** Used-vehicle listings from the Indian site CarDekho, as stated by
   the uploader. Collection method and date are not documented.
-- **Licence:** Not yet confirmed. Check the Kaggle page before redistributing.
+- **Licence:** As listed on the Kaggle page (checked 2026-10-12): database under
+  the Open Database License (ODbL) v1.0, contents under the Database Contents
+  License (DbCL) v1.0. Both are open licences. ODbL requires attribution, and
+  any adapted database that is shared must use the same licence. The raw CSV
+  is still kept out of git, and users download it themselves.
 - **Download:** Manual, through Kaggle (requires a login).
 
 ## Raw file
