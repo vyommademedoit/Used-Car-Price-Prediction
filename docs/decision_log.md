@@ -42,9 +42,45 @@ removed in advance.
 **Why:** Age is easier to interpret than calendar year. In a linear model the
 reference year only shifts the intercept, so it does not change predictions.
 
-## Open — Near-constant features (decide in Stage 3)
-After cleaning, `Seller_Type` (193 Dealer / 5 Individual), `Owner`
-(193 / 4 / 1) and `Fuel_Type = CNG` (2 rows) have very few non-majority
-examples. Their coefficients will rest on a handful of cars. This will be
-decided on domain grounds and training data only, never by checking test
-scores.
+## D6 — EDA on the training split only (Stage 2)
+**Decision:** Split the 198 clean cars 80/20 (seed 42, `split_data()` in
+`src/data_preprocessing.py`) *before* EDA, and draw every figure and
+statistic from the 158 training cars. Stage 3 reuses the same function, so
+it trains on exactly these rows.
+**Why:** EDA findings drive modelling choices (target transform, encoding,
+feature set). If test prices were explored, those choices would be
+partly fitted to the test set and its score would be optimistic.
+**Exception:** test-set *feature* ranges and category counts were checked
+(no prices), to know in advance which predictions are extrapolations.
+**Cost:** EDA sees 40 fewer cars. All the patterns found were already
+visible on the full cleaned set in Stage 1, so nothing important is lost.
+
+## D7 — Report test metrics with and without the out-of-range car (Stage 2)
+**Decision:** The primary test metrics (MAE, RMSE, R²) will use **all 40**
+test cars. A secondary line will report the same metrics on the 39 cars
+inside the training feature ranges, excluding the land cruiser (present
+price 92.6 vs training max 36.23).
+**Why:** The land cruiser forces any linear model to extrapolate 2.5×
+beyond its data, and one large error can dominate RMSE on 40 cars. This
+rule is fixed now, before any model exists, so it cannot be chosen after
+seeing which version looks better. The full-set number stays the
+headline, so the result is not flattered.
+
+## Open — Decide in Stage 3 on training data (cross-validation) only
+1. **Target scale: raw vs log `Selling_Price`.** EDA evidence favours log.
+   The price is skewed (2.38 vs −0.19 after log), and depreciation looks
+   proportional (the share of the new price retained falls from 0.94 to
+   about 0.22 with age). Keep plain `LinearRegression` either way. On the
+   log scale, convert predictions back to lakhs before computing MAE,
+   RMSE and R², so the two options are compared in the same units.
+2. **Fuel reference level = Petrol**, not the alphabetical default (CNG).
+   With CNG as the reference, the Diesel and Petrol dummies have VIF ≈ 17
+   because only 2 cars are CNG.
+3. **Near-constant features.** In training, `Seller_Type = Individual`
+   has 5 cars, `Owner > 0` has 5 (`Owner = 3` is a single camry, the most
+   influential point), and CNG has 2. The test set contains *none* of
+   them, so their coefficients cannot be checked on held-out data. Decide
+   whether to keep them on domain grounds, not on test scores.
+4. **`Year` vs `Car_Age`.** Use `Car_Age` only. They carry the same
+   information, so including both would make the design matrix exactly
+   collinear.

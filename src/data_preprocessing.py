@@ -125,6 +125,27 @@ def clean_data(
     return df, report
 
 
+def add_car_age(df: pd.DataFrame) -> pd.DataFrame:
+    """Return a copy with Car_Age = REFERENCE_YEAR - Year (see decision D5)."""
+    df = df.copy()
+    df["Car_Age"] = config.REFERENCE_YEAR - df["Year"]
+    return df
+
+
+def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Split cleaned data into (train, test) with the project's fixed seed.
+
+    EDA (Stage 2) and model training (Stage 3) both call this, so they see
+    exactly the same training rows and the test set stays untouched.
+    """
+    from sklearn.model_selection import train_test_split
+
+    train, test = train_test_split(
+        df, test_size=config.TEST_SIZE, random_state=config.RANDOM_SEED
+    )
+    return train, test
+
+
 def main() -> None:
     """Run the cleaning pipeline end to end and save its outputs."""
     raw = load_raw_data()

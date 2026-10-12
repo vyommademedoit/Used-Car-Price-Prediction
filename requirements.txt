@@ -1,4 +1,4 @@
-# Versions below were installed and tested in the development environment.
+# Versions below were installed and tested with Python 3.14.6 on Windows 11.
 pandas==3.0.2
 numpy==2.4.4
 scikit-learn==1.8.0
@@ -6,7 +6,8 @@ matplotlib==3.10.8
 seaborn==0.13.2
 joblib==1.5.3
 
-# Not yet installed or tested (added in Stage 4/5); ranges to be pinned
-# once verified on the student's machine.
+pytest==9.1.1
+
+# Installed (1.65.0 resolved) but not yet used; pin once the app is
+# built and tested in Stage 4.
 streamlit>=1.40,<2
-pytest>=8,<10
