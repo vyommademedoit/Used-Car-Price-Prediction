@@ -1,0 +1,27 @@
+# Dark theme for the Streamlit app. Streamlit reads this file when you run
+# `streamlit run app.py` from the project root. assets/style.css adds the
+# finishing touches (cards, hero header, result panel).
+
+[theme]
+base = "dark"
+primaryColor = "#FF8A3D"
+backgroundColor = "#0B0E15"
+secondaryBackgroundColor = "#151A26"
+textColor = "#E7E9F0"
+borderColor = "#252C3D"
+showWidgetBorder = true
+baseRadius = "10px"
+buttonRadius = "12px"
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap, sans-serif"
+headingFont = "Space Grotesk:https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap, sans-serif"
+metricValueFontWeight = 700
+greenColor = "#34D399"
+redColor = "#F87171"
+yellowColor = "#FBBF24"
+blueColor = "#60A5FA"
+
+[client]
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false

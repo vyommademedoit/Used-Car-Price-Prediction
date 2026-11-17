@@ -19,6 +19,7 @@ reports/coefficients.csv, reports/test_predictions.csv and figures 09–12.
 from __future__ import annotations
 
 import json
+import sys
 import warnings
 
 import joblib
@@ -94,6 +95,8 @@ def evaluate_on_test(model, test: pd.DataFrame, cols: list[str],
 
 
 def main() -> None:
+    # Old Windows consoles (cp1252) cannot print characters such as "→" or "₹".
+    sys.stdout.reconfigure(errors="replace")
     clean, _ = clean_data(load_raw_data())
     train, test = split_data(clean)
     y_train = train[config.TARGET]

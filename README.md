@@ -55,19 +55,25 @@ Streamlit · joblib · pytest. Exact versions are pinned in `requirements.txt`.
 
 ## 5. Setup
 
+Needs **Python 3.11 or newer** (developed on 3.14). Open a terminal **inside the
+project folder** (the one containing `app.py`) and run every command below from there.
+
 ```bash
-git clone <this-repo> used-car-price-prediction
-cd used-car-price-prediction
 python -m venv .venv
 ```
 
 Activate the virtual environment:
 - Windows (PowerShell): `.venv\Scripts\Activate.ps1`
+  (if PowerShell blocks scripts, run `Set-ExecutionPolicy -Scope Process Bypass` first)
+- Windows (cmd): `.venv\Scripts\activate.bat`
 - macOS / Linux: `source .venv/bin/activate`
 
 ```bash
 pip install -r requirements.txt
 ```
+
+If you skip activation, prefix commands with the venv's Python instead, e.g.
+`.venv\Scripts\python -m src.train` (Windows) or `.venv/bin/python -m src.train`.
 
 ## 6. Get the dataset
 The data is not stored in this repository.
@@ -127,7 +133,7 @@ and its reason is in [docs/decision_log.md](docs/decision_log.md).
 ## 9. Run the app
 
 ```bash
-streamlit run app.py
+python -m streamlit run app.py
 ```
 
 Open http://localhost:8501. Enter the year, showroom price, km, fuel type
@@ -155,6 +161,9 @@ files are missing.
 ## 11. Repository layout
 ```
 app.py                    Streamlit interface
+ui/charts.py              interactive Altair charts used by the app
+assets/style.css          app styling (dark theme details)
+.streamlit/config.toml    Streamlit theme (colours, fonts)
 src/config.py             paths, seed, split size, reference year
 src/data_preprocessing.py load, validate, clean, split
 src/eda.py                exploratory figures and diagnostics (training set)

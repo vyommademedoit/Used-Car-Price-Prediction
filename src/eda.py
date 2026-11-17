@@ -16,6 +16,7 @@ predictions that will be extrapolations; no test prices are used.
 from __future__ import annotations
 
 import json
+import sys
 
 import matplotlib
 
@@ -349,6 +350,8 @@ def run_eda() -> dict:
 
 
 def main() -> None:
+    # Old Windows consoles (cp1252) cannot print characters such as "→" or "₹".
+    sys.stdout.reconfigure(errors="replace")
     summary = run_eda()
     config.REPORTS_DIR.mkdir(parents=True, exist_ok=True)
     path = config.REPORTS_DIR / "eda_summary.json"

@@ -140,7 +140,7 @@ def test_app_predicts_from_form_and_matches_module():
     at.number_input(key="year").set_value(2014)
     at.number_input(key="present_price").set_value(9.4)
     at.number_input(key="kms").set_value(45_000)
-    at.selectbox(key="fuel").set_value("Diesel")
+    at.segmented_control(key="fuel").set_value("Diesel")
     at.button[0].click().run(timeout=60)
     assert not at.exception
 

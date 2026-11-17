@@ -15,6 +15,7 @@ inside the scikit-learn Pipeline, fitted on training data only.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import pandas as pd
@@ -147,6 +148,8 @@ def split_data(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
 
 
 def main() -> None:
+    # Old Windows consoles (cp1252) cannot print characters such as "→" or "₹".
+    sys.stdout.reconfigure(errors="replace")
     """Run the cleaning pipeline end to end and save its outputs."""
     raw = load_raw_data()
     clean, report = clean_data(raw)
