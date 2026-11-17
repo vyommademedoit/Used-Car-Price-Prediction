@@ -1,0 +1,254 @@
+{
+  "rows_train": 158,
+  "rows_test": 40,
+  "selling_price": {
+    "mean": 6.67,
+    "std": 4.83,
+    "min": 0.35,
+    "25%": 3.76,
+    "50%": 5.25,
+    "75%": 8.16,
+    "max": 33.0,
+    "skewness": 2.38,
+    "skewness_of_log": -0.19
+  },
+  "pearson_with_target": {
+    "Present_Price": 0.81,
+    "Kms_Driven": -0.14,
+    "Car_Age": -0.42,
+    "Owner": -0.1
+  },
+  "spearman_with_target": {
+    "Present_Price": 0.7,
+    "Kms_Driven": -0.28,
+    "Car_Age": -0.59,
+    "Owner": -0.13
+  },
+  "corr_car_age_kms": 0.71,
+  "corr_car_age_present_price": 0.0,
+  "share_retained": {
+    "median": 0.66,
+    "corr_with_car_age": -0.87,
+    "median_by_age": {
+      "2": 0.94,
+      "3": 0.91,
+      "4": 0.8,
+      "5": 0.75,
+      "6": 0.63,
+      "7": 0.54,
+      "8": 0.48,
+      "9": 0.46,
+      "10": 0.45,
+      "11": 0.3,
+      "12": 0.22,
+      "14": 0.25,
+      "15": 0.26,
+      "17": 0.22
+    }
+  },
+  "by_fuel_type": {
+    "CNG": {
+      "n": 2,
+      "median_selling_price": 3.1,
+      "median_present_price": 6.42,
+      "median_share_retained": 0.51
+    },
+    "Diesel": {
+      "n": 45,
+      "median_selling_price": 8.35,
+      "median_present_price": 11.6,
+      "median_share_retained": 0.67
+    },
+    "Petrol": {
+      "n": 111,
+      "median_selling_price": 4.9,
+      "median_present_price": 7.71,
+      "median_share_retained": 0.66
+    }
+  },
+  "by_transmission": {
+    "Automatic": {
+      "n": 28,
+      "median_selling_price": 7.62,
+      "median_present_price": 17.41,
+      "median_share_retained": 0.7
+    },
+    "Manual": {
+      "n": 130,
+      "median_selling_price": 5.1,
+      "median_present_price": 8.02,
+      "median_share_retained": 0.66
+    }
+  },
+  "by_seller_type": {
+    "Dealer": {
+      "n": 153,
+      "median_selling_price": 5.25,
+      "median_present_price": 8.7,
+      "median_share_retained": 0.66
+    },
+    "Individual": {
+      "n": 5,
+      "median_selling_price": 2.75,
+      "median_present_price": 10.21,
+      "median_share_retained": 0.27
+    }
+  },
+  "by_owner": {
+    "0": {
+      "n": 153,
+      "median_selling_price": 5.35,
+      "median_present_price": 9.29,
+      "median_share_retained": 0.66
+    },
+    "1": {
+      "n": 4,
+      "median_selling_price": 4.42,
+      "median_present_price": 6.79,
+      "median_share_retained": 0.63
+    },
+    "3": {
+      "n": 1,
+      "median_selling_price": 2.5,
+      "median_present_price": 23.73,
+      "median_share_retained": 0.11
+    }
+  },
+  "vif_raw_features": {
+    "Present_Price": 1.96,
+    "Kms_Driven": 2.76,
+    "Car_Age": 2.34,
+    "Owner": 1.16,
+    "Fuel_Type_Diesel": 17.3,
+    "Fuel_Type_Petrol": 16.89,
+    "Seller_Type_Individual": 1.32,
+    "Transmission_Manual": 1.54
+  },
+  "cooks_threshold_4_over_n": 0.0253,
+  "cooks_rows_above_threshold": {
+    "raw_price_fit": 13,
+    "log_price_fit": 12
+  },
+  "most_influential_raw_price_fit": [
+    {
+      "Car_Name": "camry",
+      "Year": 2006,
+      "Selling_Price": 2.5,
+      "Present_Price": 23.73,
+      "Kms_Driven": 142000,
+      "cooks_distance": 1.031
+    },
+    {
+      "Car_Name": "fortuner",
+      "Year": 2017,
+      "Selling_Price": 33.0,
+      "Present_Price": 36.23,
+      "Kms_Driven": 6000,
+      "cooks_distance": 0.454
+    },
+    {
+      "Car_Name": "800",
+      "Year": 2003,
+      "Selling_Price": 0.35,
+      "Present_Price": 2.28,
+      "Kms_Driven": 127000,
+      "cooks_distance": 0.446
+    },
+    {
+      "Car_Name": "innova",
+      "Year": 2005,
+      "Selling_Price": 3.49,
+      "Present_Price": 13.46,
+      "Kms_Driven": 197176,
+      "cooks_distance": 0.362
+    },
+    {
+      "Car_Name": "swift",
+      "Year": 2017,
+      "Selling_Price": 6.0,
+      "Present_Price": 6.49,
+      "Kms_Driven": 16200,
+      "cooks_distance": 0.118
+    }
+  ],
+  "most_influential_log_price_fit": [
+    {
+      "Car_Name": "camry",
+      "Year": 2006,
+      "Selling_Price": 2.5,
+      "Present_Price": 23.73,
+      "Kms_Driven": 142000,
+      "cooks_distance": 1.419
+    },
+    {
+      "Car_Name": "innova",
+      "Year": 2005,
+      "Selling_Price": 3.49,
+      "Present_Price": 13.46,
+      "Kms_Driven": 197176,
+      "cooks_distance": 0.364
+    },
+    {
+      "Car_Name": "800",
+      "Year": 2003,
+      "Selling_Price": 0.35,
+      "Present_Price": 2.28,
+      "Kms_Driven": 127000,
+      "cooks_distance": 0.239
+    },
+    {
+      "Car_Name": "innova",
+      "Year": 2005,
+      "Selling_Price": 2.75,
+      "Present_Price": 10.21,
+      "Kms_Driven": 90000,
+      "cooks_distance": 0.173
+    },
+    {
+      "Car_Name": "sx4",
+      "Year": 2003,
+      "Selling_Price": 2.25,
+      "Present_Price": 7.98,
+      "Kms_Driven": 62000,
+      "cooks_distance": 0.143
+    }
+  ],
+  "training_feature_ranges": {
+    "Present_Price": [
+      2.28,
+      36.23
+    ],
+    "Kms_Driven": [
+      2071.0,
+      197176.0
+    ],
+    "Car_Age": [
+      2.0,
+      17.0
+    ]
+  },
+  "test_rows_outside_training_feature_range": [
+    {
+      "Car_Name": "land cruiser",
+      "Year": 2010,
+      "Present_Price": 92.6,
+      "Kms_Driven": 78000,
+      "Car_Age": 10
+    }
+  ],
+  "minority_levels_in_test": {
+    "Fuel_Type=CNG": 0,
+    "Seller_Type=Individual": 0,
+    "Owner>0": 0
+  },
+  "figures": [
+    "01_price_distribution.png",
+    "02_price_vs_age.png",
+    "03_price_vs_kms.png",
+    "04_price_by_fuel.png",
+    "05_price_by_transmission.png",
+    "06_correlation_heatmap.png",
+    "07_present_vs_selling.png",
+    "08_influence_cooks_distance.png"
+  ]
+}
